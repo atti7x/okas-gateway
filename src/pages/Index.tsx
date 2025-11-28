@@ -23,21 +23,23 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative overflow-hidden">
       {/* === GALAXY-CODE-PLACEHOLDER === */}
       {/* Original ReactBits Galaxy - 1:1 kopiert */}
-      <Galaxy
-        mouseInteraction={true}
-        mouseRepulsion={false}
-        density={1.2}
-        glowIntensity={0.3}
-        saturation={0.0}
-        hueShift={0}
-        twinkleIntensity={0.3}
-        rotationSpeed={0.01}
-        speed={0.8}
-        transparent={false}
-      />
+      <div style={{ width: '100%', height: '100vh', position: 'fixed', top: 0, left: 0, zIndex: -10 }}>
+        <Galaxy
+          mouseInteraction={true}
+          mouseRepulsion={false}
+          density={1.2}
+          glowIntensity={0.3}
+          saturation={0.0}
+          hueShift={0}
+          twinkleIntensity={0.3}
+          rotationSpeed={0.01}
+          speed={0.8}
+          transparent={false}
+        />
+      </div>
       
       <Navbar />
 
