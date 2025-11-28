@@ -1,0 +1,19 @@
+{
+  "entries": [
+    {
+      "name": "OKAS AI",
+      "link": "https://okas-ai.example.com",
+      "thumbnail": "/placeholder.svg"
+    },
+    {
+      "name": "OKAS World Guesser",
+      "link": "https://world-guesser.example.com",
+      "thumbnail": "/placeholder.svg"
+    },
+    {
+      "name": "OKAS Gaming Hub",
+      "link": "https://gaming.example.com",
+      "thumbnail": "/placeholder.svg"
+    }
+  ]
+}
