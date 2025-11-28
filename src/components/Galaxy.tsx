@@ -190,23 +190,23 @@ interface GalaxyProps {
 
 // === GALAXY-CODE-PLACEHOLDER ===
 // ReactBits Galaxy/Stars Canvas hier integriert (1:1 Verhalten).
-// Parallax-Mausbewegung und interaktive Sterne wie im Original.
+// Nur weiße Sterne (saturation=0), sanftes Maus-Parallax.
 
 export default function Galaxy({
   focal = [0.5, 0.5],
   rotation = [1.0, 0.0],
   starSpeed = 0.5,
   density = 1.5,
-  hueShift = 200,
+  hueShift = 0,
   disableAnimation = false,
-  speed = 0.8,
+  speed = 1.2,
   mouseInteraction = true,
   glowIntensity = 0.5,
-  saturation = 0.4,
+  saturation = 0.0,
   mouseRepulsion = false,
-  repulsionStrength = 2,
+  repulsionStrength = 1.5,
   twinkleIntensity = 0.5,
-  rotationSpeed = 0.01,
+  rotationSpeed = 0.005,
   autoCenterRepulsion = 0,
   transparent = false,
 }: GalaxyProps) {
@@ -309,12 +309,17 @@ export default function Galaxy({
       targetMouseActive.current = 1.0;
     }
 
+    function handleMouseEnter() {
+      targetMouseActive.current = 1.0;
+    }
+
     function handleMouseLeave() {
       targetMouseActive.current = 0.0;
     }
 
     if (mouseInteraction) {
       ctn.addEventListener('mousemove', handleMouseMove);
+      ctn.addEventListener('mouseenter', handleMouseEnter);
       ctn.addEventListener('mouseleave', handleMouseLeave);
     }
 
@@ -323,6 +328,7 @@ export default function Galaxy({
       window.removeEventListener('resize', resize);
       if (mouseInteraction) {
         ctn.removeEventListener('mousemove', handleMouseMove);
+        ctn.removeEventListener('mouseenter', handleMouseEnter);
         ctn.removeEventListener('mouseleave', handleMouseLeave);
       }
       ctn.removeChild(gl.canvas);
