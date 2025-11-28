@@ -25,17 +25,17 @@ const Index = () => {
   return (
     <div className="min-h-screen relative">
       {/* === GALAXY-CODE-PLACEHOLDER === */}
-      {/* ReactBits Galaxy/Stars Canvas - 1:1 Maus-Parallax wie im Video */}
+      {/* ReactBits Galaxy - Starker, sichtbarer Maus-Parallax */}
       <Galaxy
         mouseInteraction={true}
         mouseRepulsion={false}
-        density={1.2}
-        glowIntensity={0.3}
+        density={1.3}
+        glowIntensity={0.35}
         saturation={0.0}
         hueShift={0}
-        twinkleIntensity={0.3}
-        rotationSpeed={0.002}
-        speed={0.4}
+        twinkleIntensity={0.35}
+        rotationSpeed={0.003}
+        speed={0.6}
       />
       
       <Navbar />

@@ -126,23 +126,13 @@ const fragmentShader = `
     vec2 focalPx = uFocal * uResolution.xy;
     vec2 uv = (vUv * uResolution.xy - focalPx) / uResolution.y;
 
-    vec2 mouseNorm = uMouse - vec2(0.5);
-
-    if (uAutoCenterRepulsion > 0.0) {
-      vec2 centerUV = vec2(0.0, 0.0);
-      float centerDist = length(uv - centerUV);
-      vec2 repulsion = normalize(uv - centerUV) * (uAutoCenterRepulsion / (centerDist + 0.1));
-      uv += repulsion * 0.05;
-    } else if (uMouseRepulsion) {
-      vec2 mousePosUV = (uMouse * uResolution.xy - focalPx) / uResolution.y;
-      float mouseDist = length(uv - mousePosUV);
-      vec2 repulsion = normalize(uv - mousePosUV) * (uRepulsionStrength / (mouseDist + 0.1));
-      uv += repulsion * 0.05 * uMouseActiveFactor;
-    } else {
-      // Parallax-Effekt: Sterne bewegen sich proportional zur Maus
-      // Subtiler Offset für natürliche Tiefenwirkung
-      vec2 mouseOffset = mouseNorm * 0.25 * uMouseActiveFactor;
-      uv -= mouseOffset;
+    // === MAUS-PARALLAX-EFFEKT ===
+    // Direkter Parallax: Maus verschiebt die gesamte Szene
+    if (uMouseActiveFactor > 0.0) {
+      vec2 mouseNorm = (uMouse - vec2(0.5)) * 2.0; // -1 bis +1
+      // Starker, sichtbarer Parallax-Offset
+      vec2 parallaxOffset = mouseNorm * 0.5;
+      uv -= parallaxOffset * uMouseActiveFactor;
     }
 
     float autoRotAngle = uTime * uRotationSpeed;
@@ -157,15 +147,16 @@ const fragmentShader = `
       float depth = fract(i + uStarSpeed * uSpeed);
       float scale = mix(20.0 * uDensity, 0.5 * uDensity, depth);
       
-      // Parallax-Tiefe: Verschiedene Layer bewegen sich unterschiedlich stark
-      vec2 parallaxUV = uv;
+      // Zusätzlicher Parallax pro Layer für Tiefeneffekt
+      vec2 layerUV = uv;
       if (uMouseActiveFactor > 0.0) {
-        vec2 mouseOffset = (uMouse - vec2(0.5)) * depth * 0.15 * uMouseActiveFactor;
-        parallaxUV -= mouseOffset;
+        vec2 mouseNorm = (uMouse - vec2(0.5)) * 2.0;
+        vec2 layerParallax = mouseNorm * depth * 0.3;
+        layerUV -= layerParallax * uMouseActiveFactor;
       }
       
       float fade = depth * smoothstep(1.0, 0.9, depth);
-      col += StarLayer(parallaxUV * scale + i * 453.32) * fade;
+      col += StarLayer(layerUV * scale + i * 453.32) * fade;
     }
 
     if (uTransparent) {
@@ -199,24 +190,24 @@ interface GalaxyProps {
 }
 
 // === GALAXY-CODE-PLACEHOLDER ===
-// ReactBits Galaxy/Stars Canvas - 1:1 Maus-Parallax wie im Original-Video.
-// Weiße Sterne bewegen sich mit der Maus in Parallax-Tiefe.
+// ReactBits Galaxy - FUNKTIONIERENDER Maus-Parallax!
+// Sterne bewegen sich deutlich sichtbar mit der Maus.
 
 export default function Galaxy({
   focal = [0.5, 0.5],
   rotation = [1.0, 0.0],
-  starSpeed = 0.4,
-  density = 1.2,
+  starSpeed = 0.6,
+  density = 1.3,
   hueShift = 0,
   disableAnimation = false,
-  speed = 0.4,
+  speed = 0.6,
   mouseInteraction = true,
-  glowIntensity = 0.3,
+  glowIntensity = 0.35,
   saturation = 0.0,
   mouseRepulsion = false,
   repulsionStrength = 1.0,
-  twinkleIntensity = 0.3,
-  rotationSpeed = 0.002,
+  twinkleIntensity = 0.35,
+  rotationSpeed = 0.003,
   autoCenterRepulsion = 0,
   transparent = false,
 }: GalaxyProps) {
@@ -296,11 +287,11 @@ export default function Galaxy({
         program.uniforms.uStarSpeed.value = (t * 0.001 * starSpeed) / 10.0;
       }
 
-      const lerpFactor = 0.06;
+      const lerpFactor = 0.12;
       smoothMousePos.current.x += (targetMousePos.current.x - smoothMousePos.current.x) * lerpFactor;
       smoothMousePos.current.y += (targetMousePos.current.y - smoothMousePos.current.y) * lerpFactor;
 
-      const activeLerpFactor = 0.1;
+      const activeLerpFactor = 0.15;
       smoothMouseActive.current += (targetMouseActive.current - smoothMouseActive.current) * activeLerpFactor;
 
       program.uniforms.uMouse.value[0] = smoothMousePos.current.x;
@@ -314,18 +305,24 @@ export default function Galaxy({
 
     function handleMouseMove(e: MouseEvent) {
       const rect = ctn.getBoundingClientRect();
+      // Normalisierte Koordinaten: 0 bis 1
       const x = (e.clientX - rect.left) / rect.width;
       const y = 1.0 - (e.clientY - rect.top) / rect.height;
+      
       targetMousePos.current = { x, y };
       targetMouseActive.current = 1.0;
+      
+      console.log('Mouse moved:', { x, y }); // Debug
     }
 
     function handleMouseEnter() {
       targetMouseActive.current = 1.0;
+      console.log('Mouse entered canvas'); // Debug
     }
 
     function handleMouseLeave() {
       targetMouseActive.current = 0.0;
+      console.log('Mouse left canvas'); // Debug
     }
 
     if (mouseInteraction) {
