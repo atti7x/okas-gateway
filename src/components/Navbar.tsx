@@ -26,7 +26,7 @@ export const Navbar = () => {
             {t('nav.home')}
           </a>
           <a 
-            href="https://placeholder.ai" 
+            href="https://ai.mrokas.com" 
             className="text-sm text-foreground/80 hover:text-foreground transition-colors"
             target="_blank"
             rel="noopener noreferrer"
