@@ -8,27 +8,27 @@
     {
       "name": "OKAS Chat",
       "link": "https://chat.mrokas.com",
-      "thumbnail": "/placeholder.svg"
+      "thumbnail": "/okaschat-thumbnail.png"
     },
     {
       "name": "OKAS Worldguessr",
       "link": "https://worldguessr.mrokas.com",
-      "thumbnail": "/placeholder.svg"
+      "thumbnail": "/worldguessr-thumbnail.png"
     },
     {
       "name": "OKAS OpenFront",
       "link": "https://openfront.mrokas.com",
-      "thumbnail": "/placeholder.svg"
+      "thumbnail": "/openfront-thumbnail.png"
     },
      {
       "name": "OKAS Chess",
       "link": "https://chess.mrokas.com",
-      "thumbnail": "/placeholder.svg"
+      "thumbnail": "/chess-thumbnail.png"
     },
          {
       "name": "OKAS BlockBlast",
       "link": "https://blockblast.mrokas.com",
-      "thumbnail": "/placeholder.svg"
+      "thumbnail": "/blockblast-thumnnail.png"
     }
   ]
 }
