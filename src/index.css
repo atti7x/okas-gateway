@@ -38,10 +38,10 @@ All colors MUST be HSL.
 
     --radius: 1rem;
 
-    --glass-bg: 222 47% 13% / 0.4;
-    --glass-border: 210 40% 98% / 0.1;
-    --glow: 210 100% 60% / 0.5;
-    --card-hover-glow: 210 100% 60% / 0.3;
+    --glass-bg: 222 47% 13% / 0.3;
+    --glass-border: 210 40% 98% / 0.08;
+    --glow: 210 100% 60% / 0.4;
+    --card-hover-glow: 210 100% 60% / 0.25;
 
     --sidebar-background: 222 47% 11%;
     --sidebar-foreground: 210 40% 98%;
@@ -74,21 +74,21 @@ All colors MUST be HSL.
 @layer utilities {
   .glass-effect {
     background: hsl(var(--glass-bg));
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid hsl(var(--glass-border));
   }
 
   .glow-effect {
-    box-shadow: 0 0 40px hsl(var(--glow));
+    box-shadow: 0 0 30px hsl(var(--glow));
   }
 
   .card-hover-effect {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .card-hover-effect:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 60px hsl(var(--card-hover-glow));
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px -8px hsl(var(--card-hover-glow));
   }
 }

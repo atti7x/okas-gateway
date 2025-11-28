@@ -24,37 +24,40 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative">
+      {/* === GALAXY-CODE-PLACEHOLDER === */}
+      {/* ReactBits Galaxy/Stars Canvas (1:1 Verhalten) */}
       <Galaxy
         mouseInteraction={true}
-        mouseRepulsion={true}
-        density={1.2}
-        glowIntensity={0.4}
-        saturation={0.3}
+        mouseRepulsion={false}
+        density={1.5}
+        glowIntensity={0.5}
+        saturation={0.4}
         hueShift={200}
-        twinkleIntensity={0.4}
-        rotationSpeed={0.02}
+        twinkleIntensity={0.5}
+        rotationSpeed={0.01}
+        speed={0.8}
       />
       
       <Navbar />
 
-      <main className="relative pt-40 pb-32 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-fade-in">
+      <main className="relative pt-32 pb-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-fade-in">
               {t('hero.title')}
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto animate-fade-in">
+            <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto animate-fade-in">
               {t('hero.subtitle')}
             </p>
           </div>
 
-          <div className="mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
+          <div className="mb-10">
+            <h2 className="text-2xl font-semibold text-foreground mb-6 text-center">
               {t('apps.title')}
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-fade-in">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto animate-fade-in">
             {apps.map((app, index) => (
               <div
                 key={index}
