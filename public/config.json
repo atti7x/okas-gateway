@@ -2,18 +2,33 @@
   "entries": [
     {
       "name": "OKAS AI",
-      "link": "https://okas-ai.example.com",
+      "link": "https://ai.mrokas.com",
       "thumbnail": "/placeholder.svg"
     },
     {
-      "name": "OKAS World Guesser",
-      "link": "https://world-guesser.example.com",
+      "name": "OKAS Chat",
+      "link": "https://ai.mrokas.com",
       "thumbnail": "/placeholder.svg"
     },
     {
-      "name": "OKAS Gaming Hub",
-      "link": "https://gaming.example.com",
+      "name": "OKAS Worldguessr",
+      "link": "https://worldguessr.mrokas.com",
       "thumbnail": "/placeholder.svg"
-    }
+    },
+    {
+      "name": "OKAS OpenFront",
+      "link": "https://openfront.mrokas.com",
+      "thumbnail": "/placeholder.svg"
+    },
+     {
+      "name": "OKAS Chess",
+      "link": "https://worldguessr.mrokas.com",
+      "thumbnail": "/placeholder.svg"
+    },
+         {
+      "name": "OKAS BlockBlast",
+      "link": "https://worldguessr.mrokas.com",
+      "thumbnail": "/placeholder.svg"
+    },
   ]
 }
