@@ -6,14 +6,14 @@ export const Navbar = () => {
 
   return (
     <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl">
-      <div className="glass-effect rounded-full px-6 py-3 flex items-center justify-between shadow-lg">
+      <div className="glass-effect rounded-full px-8 py-3.5 flex items-center justify-between shadow-lg">
         <div className="flex items-center gap-3">
           <img 
             src={okasLogo} 
             alt="OKAS Logo" 
-            className="w-8 h-8 object-contain"
+            className="w-9 h-9 object-contain"
           />
-          <span className="text-sm font-semibold text-foreground">
+          <span className="text-base font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
             OKAS Hub
           </span>
         </div>
