@@ -139,9 +139,10 @@ const fragmentShader = `
       vec2 repulsion = normalize(uv - mousePosUV) * (uRepulsionStrength / (mouseDist + 0.1));
       uv += repulsion * 0.05 * uMouseActiveFactor;
     } else {
-      // Parallax-Effekt: Mausbewegung verschiebt Sterne
-      vec2 mouseOffset = mouseNorm * 0.3 * uMouseActiveFactor;
-      uv += mouseOffset;
+      // Parallax-Effekt: Sterne bewegen sich proportional zur Maus
+      // Subtiler Offset für natürliche Tiefenwirkung
+      vec2 mouseOffset = mouseNorm * 0.25 * uMouseActiveFactor;
+      uv -= mouseOffset;
     }
 
     float autoRotAngle = uTime * uRotationSpeed;
@@ -155,8 +156,16 @@ const fragmentShader = `
     for (float i = 0.0; i < 1.0; i += 1.0 / NUM_LAYER) {
       float depth = fract(i + uStarSpeed * uSpeed);
       float scale = mix(20.0 * uDensity, 0.5 * uDensity, depth);
+      
+      // Parallax-Tiefe: Verschiedene Layer bewegen sich unterschiedlich stark
+      vec2 parallaxUV = uv;
+      if (uMouseActiveFactor > 0.0) {
+        vec2 mouseOffset = (uMouse - vec2(0.5)) * depth * 0.15 * uMouseActiveFactor;
+        parallaxUV -= mouseOffset;
+      }
+      
       float fade = depth * smoothstep(1.0, 0.9, depth);
-      col += StarLayer(uv * scale + i * 453.32) * fade;
+      col += StarLayer(parallaxUV * scale + i * 453.32) * fade;
     }
 
     if (uTransparent) {
@@ -190,24 +199,24 @@ interface GalaxyProps {
 }
 
 // === GALAXY-CODE-PLACEHOLDER ===
-// ReactBits Galaxy/Stars Canvas hier integriert (1:1 Verhalten).
-// Weiße Sterne, sanfter Parallax-Effekt mit Mausbewegung.
+// ReactBits Galaxy/Stars Canvas - 1:1 Maus-Parallax wie im Original-Video.
+// Weiße Sterne bewegen sich mit der Maus in Parallax-Tiefe.
 
 export default function Galaxy({
   focal = [0.5, 0.5],
   rotation = [1.0, 0.0],
-  starSpeed = 0.3,
-  density = 1.0,
+  starSpeed = 0.4,
+  density = 1.2,
   hueShift = 0,
   disableAnimation = false,
-  speed = 0.3,
+  speed = 0.4,
   mouseInteraction = true,
-  glowIntensity = 0.25,
+  glowIntensity = 0.3,
   saturation = 0.0,
   mouseRepulsion = false,
   repulsionStrength = 1.0,
-  twinkleIntensity = 0.2,
-  rotationSpeed = 0.001,
+  twinkleIntensity = 0.3,
+  rotationSpeed = 0.002,
   autoCenterRepulsion = 0,
   transparent = false,
 }: GalaxyProps) {
@@ -287,11 +296,12 @@ export default function Galaxy({
         program.uniforms.uStarSpeed.value = (t * 0.001 * starSpeed) / 10.0;
       }
 
-      const lerpFactor = 0.08;
+      const lerpFactor = 0.06;
       smoothMousePos.current.x += (targetMousePos.current.x - smoothMousePos.current.x) * lerpFactor;
       smoothMousePos.current.y += (targetMousePos.current.y - smoothMousePos.current.y) * lerpFactor;
 
-      smoothMouseActive.current += (targetMouseActive.current - smoothMouseActive.current) * lerpFactor;
+      const activeLerpFactor = 0.1;
+      smoothMouseActive.current += (targetMouseActive.current - smoothMouseActive.current) * activeLerpFactor;
 
       program.uniforms.uMouse.value[0] = smoothMousePos.current.x;
       program.uniforms.uMouse.value[1] = smoothMousePos.current.y;
