@@ -7,7 +7,7 @@
     },
     {
       "name": "OKAS Chat",
-      "link": "https://ai.mrokas.com",
+      "link": "https://chat.mrokas.com",
       "thumbnail": "/placeholder.svg"
     },
     {
@@ -22,12 +22,12 @@
     },
      {
       "name": "OKAS Chess",
-      "link": "https://worldguessr.mrokas.com",
+      "link": "https://chess.mrokas.com",
       "thumbnail": "/placeholder.svg"
     },
          {
       "name": "OKAS BlockBlast",
-      "link": "https://worldguessr.mrokas.com",
+      "link": "https://blockblast.mrokas.com",
       "thumbnail": "/placeholder.svg"
     }
   ]
