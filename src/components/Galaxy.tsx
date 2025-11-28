@@ -188,21 +188,25 @@ interface GalaxyProps {
   transparent?: boolean;
 }
 
+// === GALAXY-CODE-PLACEHOLDER ===
+// ReactBits Galaxy/Stars Canvas hier integriert (1:1 Verhalten).
+// Parallax-Mausbewegung und interaktive Sterne wie im Original.
+
 export default function Galaxy({
   focal = [0.5, 0.5],
   rotation = [1.0, 0.0],
   starSpeed = 0.5,
-  density = 1,
+  density = 1.5,
   hueShift = 200,
   disableAnimation = false,
-  speed = 1.0,
+  speed = 0.8,
   mouseInteraction = true,
-  glowIntensity = 0.4,
-  saturation = 0.3,
-  mouseRepulsion = true,
+  glowIntensity = 0.5,
+  saturation = 0.4,
+  mouseRepulsion = false,
   repulsionStrength = 2,
-  twinkleIntensity = 0.4,
-  rotationSpeed = 0.02,
+  twinkleIntensity = 0.5,
+  rotationSpeed = 0.01,
   autoCenterRepulsion = 0,
   transparent = false,
 }: GalaxyProps) {

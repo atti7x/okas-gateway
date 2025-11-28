@@ -4,27 +4,27 @@ export const Navbar = () => {
   const { t } = useTranslation();
 
   return (
-    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-5xl">
-      <div className="glass-effect rounded-full px-8 py-4 flex items-center justify-between shadow-2xl">
-        <div className="flex items-center gap-4">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-            <span className="text-xl font-bold text-primary-foreground">O</span>
+    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl">
+      <div className="glass-effect rounded-full px-6 py-3 flex items-center justify-between shadow-lg">
+        <div className="flex items-center gap-3">
+          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+            <span className="text-sm font-bold text-primary-foreground">O</span>
           </div>
-          <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <span className="text-sm font-semibold text-foreground">
             OKAS Hub
           </span>
         </div>
         
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-6">
           <a 
             href="#home" 
-            className="text-foreground hover:text-primary transition-colors font-medium"
+            className="text-sm text-foreground/80 hover:text-foreground transition-colors"
           >
             {t('nav.home')}
           </a>
           <a 
             href="https://placeholder.ai" 
-            className="text-foreground hover:text-primary transition-colors font-medium"
+            className="text-sm text-foreground/80 hover:text-foreground transition-colors"
             target="_blank"
             rel="noopener noreferrer"
           >

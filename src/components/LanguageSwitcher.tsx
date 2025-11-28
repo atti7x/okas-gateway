@@ -10,11 +10,11 @@ export const LanguageSwitcher = () => {
   };
 
   return (
-    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
+    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
       <Button
         onClick={toggleLanguage}
         variant="outline"
-        className="glass-effect rounded-full px-6 py-3 border-glass-border hover:bg-secondary/20 transition-all"
+        className="glass-effect rounded-full px-5 py-2 text-sm border-glass-border hover:bg-secondary/20 transition-all"
       >
         {i18n.language === 'de' ? t('language.english') : t('language.german')}
       </Button>
